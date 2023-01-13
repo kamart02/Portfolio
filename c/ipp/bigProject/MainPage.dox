@@ -1,0 +1,14 @@
+/**
+@mainpage Dokumentacja zadania telefony
+
+### Treść zadania
+
+Uwaga: aktualna treść zadania znajduje się w [Moodle](https://moodle.mimuw.edu.pl).
+
+### Opis programu
+
+Program udostępnia funkcje przekierowujące numery telefonów. Pozwala na przechowywanie jak i dodawanie, sprawdzanie
+przekierowań. Implementacja tych funkcji korzysta z modułów dynamicznej tablicy string oraz mapy zaimplementowanej
+za pomocą drzewa trie.
+
+*/

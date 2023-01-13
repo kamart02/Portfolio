@@ -1,0 +1,70 @@
+COPYRIGHT Uniwersytet Warszawski
+
+Telefony
+
+Tegoroczne duże zadanie polega na zaimplementowaniu operacji na numerach telefonów. Na potrzeby tego zadania przyjmujemy, że numer telefonu jest to niepusty ciąg składający się z cyfr 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.
+Część 1 zadania
+
+Jako pierwszą część zadania należy zaimplementować moduł operacji przekierowywania numerów telefonów. Opis interfejsu modułu znajduje się w pliku phone_forward.h w formacie komentarzy dla programu doxygen. Przykład użycia znajduje się w pliku phone_forward_example.c.
+Dostarczamy
+
+W repozytorium https://git.mimuw.edu.pl/IPP-login.git (gdzie login to identyfikator używany do logowania się w laboratorium komputerowym) znajduje się szablon implementacji rozwiązania tego zadania. Znajdują się tam następujące pliki:
+
+    src/phone_forward.h – deklaracja interfejsu modułu wraz z jego dokumentacją w formacie doxygen,
+    src/phone_forward_example.c – przykład użycia modułu,
+    CMakeLists.txt – plik konfiguracyjny programu cmake,
+    Doxyfile.in – plik konfiguracyjny programu doxygen,
+    MainPage.dox – strona główna dokumentacji w formacie doxygen.
+
+Zastrzegamy sobie możliwość nanoszenia poprawek do tego szablonu. Będziemy je umieszczać w gałęzi template/part1.
+Wymagamy
+
+Jako rozwiązanie części 1 zadania wymagamy:
+
+    ewentualnego uzupełnienia implementacji w pliku phone_forward.h,
+    stworzenia pliku phone_forward.c z implementacją modułu,
+    uzupełnienia dokumentacji w formacie doxygen tak, aby była przydatna dla programistów rozwijających moduł.
+
+Implementacja funkcji phfwdReverse jest nieobowiązkowa w części 1 zadania i funkcja ta nie będzie testowana w tej części zadania. Zamieszczamy jej deklarację i opis w pliku phone_forward.h oraz przykłady jej użycia w pliku phone_forward_example.c, gdyż w kolejnych częściach zadania interfejs modułu będzie rozszerzany o kolejne funkcje, m.in. właśnie o tę funkcję.
+
+Funkcje implementowanego modułu nie mogą gubić pamięci ani pozostawiać struktury danych w niespójnym stanie, również wtedy gdy wystąpił błąd alokowania pamięci. Funkcje muszą być odporne na błędne dane – proszę zwrócić uwagę na niebezpieczeństwa związane z użyciem funkcji strlen, strcpy itp.
+
+Powinna być możliwość skompilowania rozwiązania w dwóch wersjach: release i debug. Wersję release kompiluje się za pomocą sekwencji poleceń:
+
+mkdir release
+cd release
+cmake ..
+make
+make doc
+
+Wersję debug kompiluje się za pomocą sekwencji poleceń:
+
+mkdir debug
+cd debug
+cmake -D CMAKE_BUILD_TYPE=Debug ..
+make
+make doc
+
+W wyniku kompilacji powinien powstać plik wykonywalny phone_forward oraz dokumentacja. W poleceniu cmake powinno być również możliwe jawne określenie wariantu release budowania pliku wynikowego:
+
+cmake -D CMAKE_BUILD_TYPE=Release ..
+
+Zawartość dostarczonych przez nas plików można modyfikować, o ile nie zmienia to interfejsu modułu i zachowuje wymagania podane w treści zadania, przy czym nie wolno zmieniać opcji kompilacji. Zmiany mogą dotyczyć np. stylu, dokumentacji, deklaracji typedef, włączania plików nagłówkowych, implementacji funkcji jako static inline. Ewentualne dodatkowe pliki źródłowe, będące częścią rozwiązania, należy umieścić w katalogu src. Funkcja main programu musi znajdować się w pliku phone_forward_example.c, ale zawartość tego pliku nie będzie oceniana w tej części zadania.
+Oddawanie rozwiązania
+
+Rozwiązanie należy oddawać przez wspomniane wyżej repozytorium git. W repozytorium mają się znaleźć wszystkie pliki niezbędne do zbudowania pliku wykonywalnego oraz dokumentacji. W repozytorium nie wolno umieszczać plików binarnych ani tymczasowych. W Moodle jako rozwiązanie należy umieścić tekst zawierający identyfikator finalnej wersji (ang. commit) rozwiązania, na przykład:
+
+518507a7e9ea50e099b33cb6ca3d3141bc1d6638
+
+Rozwiązanie należy zatwierdzić (git commit) i wysłać do repozytorium (git push) przed terminem podanym w Moodle.
+Punktacja
+
+Za w pełni poprawne rozwiązanie zadania implementujące wszystkie wymagane funkcjonalności można zdobyć maksymalnie 20 punktów. Od tej oceny będą odejmowane punkty za poniższe uchybienia:
+
+    Za problemy ze skompilowaniem rozwiązania można stracić wszystkie punkty.
+    Za każdy test, którego program nie przejdzie, traci się do 1 punktu.
+    Za problemy z zarządzaniem pamięcią można stracić do 6 punktów.
+    Za niezgodną ze specyfikacją strukturę plików w rozwiązaniu, niezgodne ze specyfikacją nazwy plików w rozwiązaniu lub umieszczenie w repozytorium niepotrzebnych albo tymczasowych plików można stracić do 4 punktów.
+    Za złą jakość kodu, brzydki styl kodowania można stracić do 4 punktów.
+    Za ostrzeżenia wypisywane przez kompilator można stracić do 2 punktów.
+    Za braki w dokumentacji można stracić do 2 punktów.

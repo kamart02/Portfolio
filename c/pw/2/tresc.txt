@@ -1,0 +1,29 @@
+COPYRIGHT Uniwersytet Warszawski
+ 
+ Podmiana deskryptorów jest ważną i powszechną techniką wykorzystywaną w Linuksie. Przykładem mechanizmu, który bezpośrednio wykorzystuje tę technikę jest pipeline, czyli operator |. Wywołanie A|B w terminalu powoduje przekierowanie standardowego wyjścia programu A na standardowe wejście programu B.
+
+Np.: wywołanie w terminalu bash
+
+echo "Ala ma kota" | fold -w 1 | grep -ic a
+
+policzy liczbę liter a w napisie "Ala ma kota"
+
+Dzisiejszym zadaniem jest napisanie uproszczonego odpowiednika operatora |. Napisz program pipeline, który połączy rurociągiem argumenty, z którymi został wywołany, czyli
+
+./pipeline a1 a2 ... aN
+
+ma wykonać
+
+a1 | a2 | ... | aN
+
+Wymagania/podpowiedzi:
+
+    Rozwiązanie powinno używać łącz nienazwanych.
+    Nie powinno używać funkcji systemowych read ani write (poza pisaniem na stderr).
+    Standardowe wejście pierwszego programu i wyjście ostatniego powinny pozostać bez zmian.
+    Każdy proces powinien zamknąć wszystkie nieużywane niestandardowe deskryptory.
+    Aby to sprawdzić, rozwiązanie powinno zawołać funkcję print_open_descriptors() z pipeline-utils.h tuż przed każdym wywołaniem exec oraz przed każdym wyjściem z main (exit lub return).
+    Nie należy tworzyć dużej (proporcjonalnej do liczby argumentów) tablicy deskryptorów – i tak większość musiałaby być zamknięta.
+    Dla ułatwienia można swój program uruchamiać używając ./pipeline-tester, który zamknie ewentualne deskryptory pozostawione przez środowisko (np. VS Code) przed uruchomieniem ./pipeline z przykładowymi argumentami.
+    Warto logować informacje o wywołaniach pipe, dup2 i exec, które robimy, na standardowe wyjście błędów. Na przykład: fprintf(stderr, "Pid %d ...", getpid(), ...);
+    Logi są czytelniejsze gdy umieścić sleep(1) w odpowiednich miejscach, np. przed fork() oraz w procesie macierzystym po fork().

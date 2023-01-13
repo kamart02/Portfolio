@@ -1,0 +1,137 @@
+COPYRIGHT Uniwersytet Warszawski
+
+Labirynt
+
+Należy napisać program poszukujący drogi w wielowymiarowym labiryncie.
+Definicje
+
+Labirynt jest zawarty w niepustym przedziale 𝑘
+-wymiarowym (prostopadłościanie 𝑘-wymiarowym) składającym się z 𝑘-wymiarowych kostek jednostkowych. Każda z takich kostek może być wypełniona, tworząc ściany labiryntu, lub pusta, tworząc przestrzeń, w której można się poruszać. Po labiryncie można się poruszać, przechodząc pomiędzy pustymi kostkami stykającymi się ścianą (𝑘−1
+
+)-wymiarową.
+
+Położenie każdej kostki (pustej lub wypełnionej) określa się przez podanie jej współrzędnych, które są całkowitymi liczbami dodatnimi.
+
+Droga w labiryncie jest to ciąg przejść między pustymi kostkami od pozycji początkowej do pozycji końcowej. Pozycje początkową i końcową definiuje się przez podanie współrzędnych dwóch pustych kostek. Długość drogi jest to liczba przejść. Jeśli pozycja końcowa jest jednocześnie pozycją początkową, to droga ma długość zero.
+Dane wejściowe
+
+Program czyta dane ze standardowego wejścia. Poprawne dane składają się z czterech linii tekstu. Trzy początkowe linie zawierają po 𝑘
+liczb całkowitych z przedziału od 1 do SIZE_MAX, gdzie 𝑘
+
+jest dodatnią liczbą całkowitą określającą wymiar labiryntu. Są to odpowiednio:
+
+    𝑛1, 𝑛2, 𝑛3, …, 𝑛𝑘
+,
+𝑥1, 𝑥2, 𝑥3, …, 𝑥𝑘
+,
+𝑦1, 𝑦2, 𝑦3, …, 𝑦𝑘
+
+    ,
+
+gdzie liczby 𝑛𝑖
+określają rozmiary labiryntu w poszczególnych wymiarach, a liczby 𝑥𝑖 i 𝑦𝑖
+
+określają odpowiednio współrzędne pozycji początkowej i końcowej.
+
+Czwarta linia zawiera liczbę całkowitą opisującą położenia ścian labiryntu. W rozwinięciu dwójkowym tej liczby bit (𝑧1−1)+(𝑧2−1)𝑛1+(𝑧3−1)𝑛1𝑛2+…+(𝑧𝑘−1)𝑛1𝑛2…𝑛𝑘−1
+określa kostkę o współrzędnych (𝑧1,𝑧2,𝑧3,…,𝑧𝑘)
+
+. Jeśli bit ten ma wartość 0, to kostka jest pusta, a jeśli ma wartość 1, to kostka jest wypełniona.
+
+Liczba w czwartej linii może być podana na dwa sposoby:
+
+    liczba szesnastkowa zaczynająca się kombinacją znaków 0x, zapisana z użyciem cyfr 0, 1, …, 9, a, b, …, f, A, B, … F.
+    znak R, po którym występuje pięć zapisanych przy podstawie 10 liczb całkowitych z przedziału od 0 do UINT32_MAX: 𝑎
+
+, 𝑏, 𝑚, 𝑟, 𝑠0, używanych w niżej opisany sposób, przy czym nakładamy dodatkowy warunek, że liczba 𝑚
+
+    nie jest zerem.
+
+Wyliczamy liczby 𝑠1
+, 𝑠2, 𝑠3, …, 𝑠𝑟 ze wzoru 𝑠𝑖=(𝑎𝑠𝑖−1+𝑏)mod𝑚. Wyliczamy reszty 𝑤𝑖=𝑠𝑖mod𝑛1𝑛2…𝑛𝑘. Liczba opisująca położenie ścian labiryntu ma w rozwinięciu dwójkowym ustawiony bit numer 𝑗, jeśli istnieje taki indeks 𝑖, że 𝑗mod232=𝑤𝑖
+
+.
+
+Liczby mogą być poprzedzone wiodącymi zerami. Liczby występujące w jednej linii rozdzielone są dowolną liczbą białych znaków. Między znakiem R a pierwszą liczbą może nie być odstępu lub może być dowolna liczba białych znaków. Na początku i na końcu każdej linii może występować dowolna liczba białych znaków.
+Opis działania programu
+
+Program czyta dane, a następnie, jeśli są poprawne, wyznacza długość najkrótszej drogi od pozycji początkowej do pozycji końcowej. Program wypisuje na standardowe wyjście jedną linię (zakończoną znakiem przejścia do nowej linii, czyli w języku C znakiem \n o kodzie ASCII 10) zawierającą długość znalezionej drogi (bez zer wiodących) lub komunikat NO WAY, jeśli nie ma drogi. Program kończy działanie kodem 0. Program powinien jawnie zwolnić zaalokowaną pamięć.
+Obsługa błędów
+
+Jeśli dane wejściowe są niepoprawne, to program wypisuje na standardowe wyjście diagnostyczne jedną linię (zakończoną znakiem przejścia do nowej linii) zawierającą komunikat ERROR L, gdzie L jest liczbą całkowitą z przedziału od 1 do 5. Jest to numer pierwszej linii związanej z błędem. Jeśli wystąpił nienaprawialny błąd, np. funkcja biblioteczna zakończyła się niepowodzeniem, zabrakło pamięci, nie da się wyznaczyć wyniku, to program wypisuje na standardowe wyjście diagnostyczne jedną linię (zakończoną znakiem przejścia do nowej linii) zawierającą komunikat ERROR 0. Program kończy działanie kodem 1. Program przed zakończeniem powinien jawnie zwolnić zaalokowaną pamięć, chyba że wystąpił błąd alokacji pamięci.
+Przykładowe dane
+
+Przykładowe dane dla programu i wyniki jego działania znajdują się w załączonym archiwum usage_examples.zip. Są tam następujące przykłady:
+
+    example1 – mały labirynt dwuwymiarowy z drogą o długości 12,
+    example2 – mały labirynt jednowymiarowy z drogą o długości 5,
+    example3 – mały labirynt trójwymiarowy, ale jeden wymiar jest zdegenerowany, pozycja końcowa jest pozycją początkową,
+    example4 – mały labirynt trójwymiarowy z drogą o długości 4,
+    example5 – duży labirynt jednowymiarowy bez drogi,
+    error00 – ewidentnie za duży labirynt,
+    error10 – rozmiar labiryntu nie może być zerowy,
+    error26 – pozycja (początkowa) musi być w pustej kostce,
+    error30 – współrzędne pozycji (końcowej) muszą być dodatnie,
+    error40 – liczba opisująca położenie ścian ma za dużo bitów,
+    error50 – dane wejściowe mają za dużo linii.
+
+Makefile
+
+Częścią zadania jest napisanie pliku makefile lub Makefile. W wyniku wywołania polecenia make powinien powstać program wykonywalny labyrinth. Jeśli któryś z plików źródłowych ulegnie zmianie, ponowne wpisanie make powinno na nowo stworzyć plik wykonywalny. Plik makefile lub Makefile powinien działać w następujący sposób:
+
+    osobno kompiluje każdy plik .c,
+    linkuje wszystkie pliki .o,
+    przy zmianie w pliku .c lub .h wykonuje tylko niezbędne akcje,
+    wywołanie make clean usuwa plik wykonywalny i dodatkowe pliki powstałe podczas kompilowania.
+
+Zalecamy kompilowanie programem gcc z opcjami:
+
+-Wall -Wextra -Wno-implicit-fallthrough -std=c17 -O2
+
+Skrypt testujący
+
+Osobną częścią zadania jest napisanie skryptu test.sh. Po wywołaniu
+
+./test.sh prog dir
+
+skrypt powinien uruchomić program prog dla wszystkich plików wejściowych postaci dir/*.in, porównać wyniki z odpowiadającymi im plikami dir/*.out i dir/*.err, a następnie wypisać, które testy zakończyły się powodzeniem, a które niepowodzeniem. Skrypt powinien akceptować parametry z dowolną ścieżką, jaką akceptuje powłoka.
+
+Do wykrywania problemów z zarządzaniem pamięcią należy użyć programu valgrind.
+Pozostałe wymagania
+
+Rozwiązanie zadania powinno być napisane w języku C i korzystać z dynamicznie alokowanych struktur danych. Implementacja powinna być jak najefektywniejsza. Należy unikać zbędnego alokowania pamięci i kopiowania danych.
+
+Nie należy wprowadzać sztucznych ograniczeń. Wielkość danych i rozmiar labiryntu są ograniczone jedynie przez rozmiar dostępnej pamięci i zakres arytmetyki komputera (64 bity).
+
+Program będzie sprawdzany na maszynie students.mimuw.edu.pl i musi kompilować się oraz działać na tej maszynie.
+
+Kod programu powinien być podzielony na moduły.
+
+Moduł zwykle składa się z dwóch plików, np. x.c i x.h, gdzie x jest nazwą modułu, implementowanej przez ten moduł struktury danych lub tp. Plik nagłówkowy x.h zawiera deklaracje operacji, struktur udostępnianych przez moduł x, a plik x.c – ich implementację. W pliku nagłówkowym należy umieszczać jedynie deklaracje i definicje, które są częścią interfejsu tego modułu. Wszystkie szczegóły powinny być ukryte w pliku z implementacją.
+
+Moduł może też składać się z samego pliku nagłówkowego, jeśli udostępnia jedynie definicje stałych bądź typów, lub funkcji, które sugerujemy kompilatorowi do rozwijania w miejscu wywołania (static inline).
+
+Moduł może też składać się z samego pliku z implementacją, jeśli nie udostępnia żadnego interfejsu – żadne funkcje z tego modułu nie są wywoływane z innych modułów.
+
+Ponadto rozwiązanie powinno zawierać pliki:
+
+    makefile lub Makefile – Patrz punkt „Makefile”,
+    test.sh – Patrz punkt „Skrypt testujący”.
+
+Rozwiązanie należy oddać jako archiwum skompresowane programem zip lub parą programów tar i gzip.
+Wskazówki
+
+Warto zapoznać się z typami i stałymi zdefiniowanymi w plikach stdbool.h, stddef.h, stdint.h, inttypes.h, limits.h.
+
+Inspiracją może być algorytm two bit breadth first search stosowany do przeszukiwania dużych grafów, patrz S. Edelkamp, S. Schrödl, Heuristic Search: Theory and Applications, str. 271–273.
+Punktacja
+
+Za w pełni poprawne rozwiązanie zadania implementujące wszystkie funkcjonalności można zdobyć maksymalnie 20 punktów. Rozwiązanie niekompilujące się będzie ocenione na 0 punktów. Punkty będą odejmowane za poniższe uchybienia:
+
+    Za każdy test, którego program nie przejdzie, traci się od 0,1 do 1 punktu.
+    Za problemy z zarządzaniem pamięcią można stracić do 6 punktów.
+    Za niezgodną ze specyfikacją strukturę plików lub niezgodne ze specyfikacją nazwy plików można stracić do 4 punktów.
+    Za złą jakość kodu, brzydki styl kodowania można stracić do 4 punktów.
+    Za ostrzeżenia wypisywane przez kompilator można stracić do 2 punktów.
+    Za brak lub źle działający makefile/Makefile można stracić do 2 punktów.
+    Za brak skryptu testującego lub błędy w tym skrypcie można stracić do 3 punktów.

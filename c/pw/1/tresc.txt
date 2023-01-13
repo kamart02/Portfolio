@@ -1,0 +1,20 @@
+COPYRIGHT Uniwersytet Warszawski
+
+ W pliku tree.c znajdziesz przykład, w którym proces macierzysty tworzy N_PROC procesów potomnych. Napisz program line.c tworzący linię składającą się z N_PROC procesów: każdy proces (poza ostatnim) jest rodzicem kolejnego procesu.
+
+Każdy potomek powinien wykonać exec, uruchamiając program line od nowa, przekazując przy tym pomniejszoną liczbę procesów jako argument.
+
+Każdy proces powinien zaczekać na zakończenie potomka, o ile go posiada.
+
+Wszystkie procesy oprócz pierwszego powinny wypisać na standardowe wyjście swój identyfikator, a także identyfikator swojego rodzica.
+
+Do obsługi błędów funkcji systemowych należy użyć makra ASSERT_SYS_OK().
+
+Do przekazania liczby jako argument (typu char*) można użyć do konwersji funkcji snprintf:
+
+    char buffer[BUFFER_SIZE];
+    int ret = snprintf(buffer, sizeof buffer, "%d", n_children);
+    if (ret < 0 || ret >= (int)sizeof(buffer))
+        fatal("snprintf failed");
+
+Do odczytania argumentu programu jako liczba można użyć: atoi(argv[1]) (sprawdziwszy argc w int main(int argc, char* argv[])).

@@ -1,0 +1,43 @@
+COPYRIGHT Uniwersytet Warszawski
+
+Przygotowujemy finalną wersję modułu operacji na numerach telefonów.
+Część 3 zadania
+
+Niestety funkcja phfwdReverse nie wyznacza przeciwobrazu funkcji phfwdGet. Jeśli phfwdGet(x) = y, to x należy do wyniku phfwdReverse(y). Implikacja w drugą stronę nie zachodzi. Należy zaimplementować funkcję
+
+PhoneNumbers * phfwdGetReverse(PhoneForward const *pf, char const *num);
+
+która dla podanej za pomocą wskaźnika pf bazy przekierowań i podanego numeru telefonu num wyznacza posortowaną leksykograficznie listę wszystkich takich numerów telefonów i tylko takich numerów telefonów x, że phfwdGet(x) = num. Funkcja ta alokuje strukturę PhoneNumbers, która musi być zwolniona za pomocą funkcji phnumDelete. Wynikiem funkcji jest NULL, gdy nie udało się alokować pamięci. Jeśli podany napis num nie reprezentuje numeru, wynikiem jest pusty ciąg.
+
+Należy w następujący sposób ujednolicić reakcję na parametr o wartości NULL. Wynik funkcji phfwdAdd jest false, gdy parametr pf ma wartość NULL. Funkcje phfwdDelete, phfwdRemove nic nie robią, gdy parametr pf ma wartość NULL. Wynik funkcji phfwdGet, phfwdGetReverse, phfwdReverse jest NULL, gdy parametr pf ma wartość NULL. Funkcja phnumDelete nic nie robi, gdy parametr pnum ma wartość NULL. Wynik funkcji phnumGet jest NULL, gdy parametr pnum ma wartość NULL.
+
+Należy poprawić i uzupełnić dokumentację, aby opisywała faktyczne działanie poszczególnych operacji. W szczególności należy uwzględnić wyjaśnienia, które pojawiły się lub pojawią się na forum.
+
+Ponadto w trzeciej części zadania oczekujemy poprawienia ewentualnych błędów z poprzednich części zadania.
+Dostarczamy
+
+Niczego nie dostarczamy. Rozwiązanie trzeciej części zadania powinno korzystać z własnego rozwiązania jego poprzednich części.
+Wymagamy
+
+Obowiązują wszystkie ustalenia z pierwszej i drugiej części zadania.
+Oddawanie rozwiązania
+
+Rozwiązanie należy oddawać, podobnie jak część pierwszą i drugą, przez repozytorium git. W repozytorium mają się znaleźć wszystkie pliki niezbędne do zbudowania pliku wykonywalnego oraz dokumentacji. W repozytorium nie wolno umieszczać plików binarnych ani tymczasowych. W Moodle jako rozwiązanie należy umieścić tekst zawierający identyfikator finalnej wersji (ang. commit) rozwiązania, na przykład:
+
+518507a7e9ea50e099b33cb6ca3d3141bc1d6638
+
+Rozwiązanie należy zatwierdzić (git commit) i wysłać do repozytorium (git push) przed terminem podanym w Moodle.
+Testy
+
+Do oceniania trzeciej części zadania będą użyte wszystkie testy użyte do oceniania poprzednich części, ale niektóre testy będą zmienione lub rozszerzone. Pojawią się też nowe testy.
+Punktacja
+
+Za w pełni poprawne rozwiązanie zadania implementujące wszystkie wymagane funkcjonalności można zdobyć maksymalnie 20 punktów. Od tej oceny będą odejmowane punkty za poniższe uchybienia:
+
+    Za problemy ze skompilowaniem rozwiązania można stracić wszystkie punkty.
+    Za każdy test, którego program nie przejdzie, traci się do 1 punktu.
+    Za problemy z zarządzaniem pamięcią można stracić do 6 punktów.
+    Za niezgodną ze specyfikacją strukturę plików w rozwiązaniu, niezgodne ze specyfikacją nazwy plików w rozwiązaniu lub umieszczenie w repozytorium niepotrzebnych albo tymczasowych plików można stracić do 4 punktów.
+    Za złą jakość kodu, brzydki styl kodowania można stracić do 4 punktów.
+    Za ostrzeżenia wypisywane przez kompilator można stracić do 2 punktów.
+    Za braki w dokumentacji można stracić do 2 punktów.

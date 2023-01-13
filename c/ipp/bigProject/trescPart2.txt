@@ -1,0 +1,37 @@
+COPYRIGHT Uniwersytet Warszawski
+
+Kontynuujemy implementowanie operacji na numerach telefonów.
+Część 2 zadania
+
+Modyfikujemy definicję numeru telefonu. Numer telefonu jest to nadal niepusty ciąg, którego elementami są cyfry, ale teraz dozwolone są dwie dodatkowe cyfry. Cyfrę dziesięć reprezentujemy jako znak *, a cyfrę jedenaście – jako znak #.
+
+Należy zaimplementować funkcję phfwdReverse według specyfikacji podanej w szablonie rozwiązania udostępnionym z pierwszą częścią zadania.
+
+Ponadto w drugiej części zadania oczekujemy poprawienia ewentualnych błędów z poprzedniej części zadania.
+Dostarczamy
+
+Niczego nie dostarczamy. Rozwiązanie drugiej części zadania powinno korzystać z własnego rozwiązania części pierwszej.
+Wymagamy
+
+Obowiązują wszystkie ustalenia z pierwszej części zadania.
+Oddawanie rozwiązania
+
+Rozwiązanie należy oddawać, podobnie jak część pierwszą, przez repozytorium git. W repozytorium mają się znaleźć wszystkie pliki niezbędne do zbudowania pliku wykonywalnego oraz dokumentacji. W repozytorium nie wolno umieszczać plików binarnych ani tymczasowych. W Moodle jako rozwiązanie należy umieścić tekst zawierający identyfikator finalnej wersji (ang. commit) rozwiązania, na przykład:
+
+518507a7e9ea50e099b33cb6ca3d3141bc1d6638
+
+Rozwiązanie należy zatwierdzić (git commit) i wysłać do repozytorium (git push) przed terminem podanym w Moodle.
+Testy
+
+Do oceniania drugiej części zadania będą użyte wszystkie testy użyte do oceniania części pierwszej, ale niektóre testy będą zmienione lub rozszerzone. Pojawią się też nowe testy.
+Punktacja
+
+Za w pełni poprawne rozwiązanie zadania implementujące wszystkie wymagane funkcjonalności można zdobyć maksymalnie 20 punktów. Od tej oceny będą odejmowane punkty za poniższe uchybienia:
+
+    Za problemy ze skompilowaniem rozwiązania można stracić wszystkie punkty.
+    Za każdy test, którego program nie przejdzie, traci się do 1 punktu.
+    Za problemy z zarządzaniem pamięcią można stracić do 6 punktów.
+    Za niezgodną ze specyfikacją strukturę plików w rozwiązaniu, niezgodne ze specyfikacją nazwy plików w rozwiązaniu lub umieszczenie w repozytorium niepotrzebnych albo tymczasowych plików można stracić do 4 punktów.
+    Za złą jakość kodu, brzydki styl kodowania można stracić do 4 punktów.
+    Za ostrzeżenia wypisywane przez kompilator można stracić do 2 punktów.
+    Za braki w dokumentacji można stracić do 2 punktów.
